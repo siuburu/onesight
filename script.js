@@ -4,11 +4,12 @@ fetch(baseURL)
     .then((resp) => resp.json())
     .then((data) => displayData(data));
 
+//cria uma lista não ordenada dado um array
 function makeUL(array){
-    var list = document.createElement('ul');
-    var item = document.createElement('li');
+    var list = document.getElementById('nameList');
+   
     for (var i = 0; i < array.length; i++){
-        
+         var item = document.createElement('li');
 
         item.appendChild(document.createTextNode(array[i]));
 
@@ -16,51 +17,50 @@ function makeUL(array){
     }
     return list;
 }
+//Lista os elementos da api em uma UL
 function displayData(data) {
-    markup = `<ul>`
+    const gameNames = [];
+    for (var i = 0; i < data.length; i++){
+        gameNames[i] = data[i].name;
+    }
+    document.getElementById('gameList').appendChild(makeUL(gameNames));
+    /*
     data.forEach(element => {
         console.log(element.name);
+        //adiciona todos os títulos dos jogos numa lista não ordenada.
         document.getElementById('gameList').appendChild(makeUL(element.name));
+    });
+    */
+}
+
+function getDescription(target, data){
+    data.forEach(element => {
+        if(element.name === target.innerHTML ){
+            var developers = document.createElement('h3');
+            var genre = document.createElement('h3');
+            var publishers = document.createElement('h3');
+            var releaseDates = document.createElement('h3');
+            developers.appendChild(document.createTextNode("Desenvolvedora: " + element.developers));
+            genre.appendChild(document.createTextNode("Gênero: " + element.genre));
+            publishers.appendChild(document.createTextNode("Distribuidora: " + element.publishers));
+            target.appendChild(developers);
+            target.appendChild(genre);
+            target.appendChild(publishers);
+        }
     });
 }
 
-/* 
-fetch(baseURL)
-    .then((res) => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            throw new Error("NETWORK ERROR");
-        }
-    })
-    .then((data) => {
-        let currGame = new Array();
-        markup = ``;
-        //array de jogos
-        const gameArr = data;
+function getEventTarget(e){
+    e = e || window.event;
+    return e.target || e.srcElement;
+}
 
-        markup = `<h3>Lista de jogos do Switch`;
-
-        //Itera pelo array de jogos e encadeia com html
-
-        for (let i = 0; i < gameArr.length; i++) {
-            currGame = gameArr[i].name;
-            markup += `
-            <a class = "game" href = "#"
-                <div class="title">${currGame.name} </div>
-                <div class="genre">${currGame.genre} </div>
-                <div class="content">
-                    ${currGame.developers}
-                    </br></br>
-                    <span>${currGame.publishers}</span>
-                    </br></br>
-                    <span>${currGame.releaseDates}</span>
-                </div>
-            </a>
-        `;
-        }
-
-        container.insertAdjacentHTML("afterbegin", markup);
-    })
-    .catch((error) => console.error("FETCH ERROR: ", error));
-*/
+var ul = document.getElementById('nameList');
+ul.onclick = function(event){
+    var target = getEventTarget(event);
+    fetch(baseURL)
+        .then((res) => res.json())
+        .then((data) => {
+            getDescription(target, data);
+        })
+};
