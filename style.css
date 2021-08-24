@@ -19,6 +19,7 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    width: 50%;
 }
 #gameList li a {
     border: 1px solid #ddd;
@@ -32,4 +33,22 @@
   }
 #gameList li a:hover:not(.header) {
     background-color: #eee;
+  }
+#myBtnContainer{
+    display: inline-block;
+    width: 50%;
+}
+
+  .filterDiv {
+    float: right;
+    background-color: #2196F3;
+    color: #ffffff;
+    width: 100px;
+    line-height: 100px;
+    text-align: center;
+    margin: 2px;
+    display: none; /* Hidden by default */
+  }
+  .show{
+      display: block;
   }

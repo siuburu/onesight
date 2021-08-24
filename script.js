@@ -22,15 +22,23 @@ function makeUL(array){
 //Lista os elementos da api em uma UL
 function displayData(data) {
     const gameNames = [];
+    //cria um array só com os titulos dos jogos
     for (var i = 0; i < data.length; i++){
         gameNames[i] = data[i].name;
     }
     document.getElementById('gameList').appendChild(makeUL(gameNames));
-
+    //cria um array só com os generos dos jogos
     const gameGenres = [];
     for (var i = 0; i < data.length; i++){
-        gameGenres[i] = data[i].genre;
+        gameGenres[i] = JSON.stringify(data[i].genre);
     }
+    const genre = gameGenres.filter(function(item, pos, self){
+    return self.indexOf(item) ==  pos;
+    })
+    
+    genre[0].replace(/[\|;\$%@"<~>[\(\)\+]/g, "");
+    
+    console.log(genre);
     
     /*
     data.forEach(element => {
