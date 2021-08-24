@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css">
-        <title>API Switch Games</title>
-    </head>
-    <body>
-        <label>Lista de Jogos</label>
-        <input type="text" name="" id="search" onkeyup="search()"
-        placeholder="Busque por nome..." title="Digite um nome">
-        <div id = container>
-            <div id="gameList">
-                <ul id ="nameList"></ul>
-            </div>
-            <div>
-                
 
-            </div>
-        </div>
-        <div id="myBtnContainer">
-            <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-            <button class="btn" onclick="filterSelection('Action')"> Action</button>
-              <button class="btn" onclick="filterSelection('Puzzle')"> Puzzle</button>
-            <button class="btn" onclick="filterSelection('Adventure')"> Adventure</button>
-            <button class="btn" onclick="filterSelection('Sports')"> Sports</button>
-            <button class="btn" onclick="filterSelection('Platform')"> Platform</button>
-            <button class="btn" onclick="filterSelection('Strategy')"> Strategy</button>
-            <button class="btn" onclick="filterSelection('Shooter')"> Shooter</button>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>API Switch Games</title>
+</head>
 
-           </div>
+<body>
+    <label>Lista de Jogos</label>
+    <input type="text" name="" id="search" onkeyup="search()" placeholder="Busque por nome..." title="Digite um nome">
+    <div id=container>
+        <div id="gameList">
+            <ul id="nameList"></ul>
         </div>
-    </body>
-    <script src="./script.js"></script>
+        <div>
+
+
+        </div>
+    </div>
+    <div id="myTags">
+        <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+
+    </div>
+    </div>
+</body>
+<script src="./script.js"></script>
+
 </html>
