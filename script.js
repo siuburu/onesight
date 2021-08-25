@@ -35,7 +35,7 @@ function displayData(data) {
 
 
 }
-//Insere a descrição do item da lista.
+//Insere a descrição do item da lista dentro de uma tag <p>.
 function getDescription(target, data) {
     data.forEach(element => {
         if (element.name === target.innerHTML) {
@@ -90,16 +90,19 @@ function listTags(tag) {
         document.getElementById('myTags').appendChild(tagButton);
     }
 }
-//função para adicionar as tags a cada item da lista
+//função para adicionar as tags como uma classe dentro de cada item
 function tagGenres(data) {
-    const result = [];
-    for (var i = 0; i < data.length; i++) {
-        result[i] = data[i].genre;
+    var items = document.getElementsByTagName("a");
+    for (var i = 0; i < items.length; i++) {
+        var s = items[i].innerHTML.split('<')[0];
+        data.forEach(element => {
+            if (element.name === s) {
+                var genre = Object.values(element.genre);
+                items[i].setAttribute("class", genre);
+            }
+        });
     }
-    for (var i = 0; i < result.length; i++) {}
 }
-
-
 
 //Função de busca baseada em filtrar baseado no que é digitado no input
 function search() {
@@ -124,11 +127,13 @@ function getEventTarget(e) {
     return e.target || e.srcElement;
 }
 var ul = document.getElementById('nameList');
+//ao clicar em um elemento da UL passa qual elemento foi clicado e acessa a API
 ul.onclick = function (event) {
     var target = getEventTarget(event);
     fetch(baseURL)
         .then((res) => res.json())
         .then((data) => {
             getDescription(target, data);
+            tagGenres(target, data);
         })
 };
