@@ -97,8 +97,7 @@ function tagGenres(data) {
         var s = items[i].innerHTML.split('<')[0];
         data.forEach(element => {
             if (element.name === s) {
-                var genre = Object.values(element.genre);
-                items[i].setAttribute("class", genre);
+                items[i].setAttribute("class", "filterDiv " + element.genre);
             }
         });
     }
@@ -134,6 +133,5 @@ ul.onclick = function (event) {
         .then((res) => res.json())
         .then((data) => {
             getDescription(target, data);
-            tagGenres(target, data);
         })
 };
