@@ -2,7 +2,42 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Arial";
 }
+
+.logo {
+  width: 100px;
+  cursor: pointer;
+}
+
+h3 {
+  display: block;
+}
+
+navbar {
+  align-content: right;
+}
+
+
+header .container {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header nav a {
+  text-decoration: none;
+  color: rgb(87, 87, 87);
+  margin-right: 10px;
+}
+
+header nav a:hover {
+  color: #e60012;
+}
+
+
 
 #myInput {
   background-position: 10px 12px;
@@ -14,15 +49,28 @@
   margin-bottom: 12px;
 }
 
+#search {
+  display: flexbox;
+}
+
 .container {
   display: inline-block;
 }
 
-#gameList {
+#lista {
   list-style-type: none;
   padding: 0;
-  margin: ;
   width: 50%;
+  float: left;
+  justify-content: center;
+}
+
+#mytags {
+
+  width: 50%;
+  float: left;
+  padding: 20px;
+  border: 2px solid red;
 }
 
 #gameList li a {
@@ -35,6 +83,10 @@
   font-size: 18px;
   color: black;
   display: block
+}
+
+.btn {
+  margin-right: 5px;
 }
 
 #gameList li a:hover:not(.header) {
@@ -61,3 +113,31 @@
 .show {
   display: block;
 }
+
+.errspan {
+  float: right;
+  margin-right: 6px;
+  margin-top: -20px;
+  position: relative;
+  z-index: 2;
+  color: red;
+}
+
+.btn-outline-primary {
+  color: #e60012;
+  background-color: #ffffff;
+  border-color: #ff727e;
+  /*set the color you want here*/
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.open>.dropdown-toggle.btn-outline-primary {
+  color: #fff;
+  background-color: #e60012;
+  border-color: #ff727e;
+}
+
+/*set the color you want here*/

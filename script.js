@@ -1,24 +1,21 @@
 const baseURL = "https://api.sampleapis.com/switch/games";
-
+//acesso a API
 fetch(baseURL)
     .then((resp) => resp.json())
-    .then((data) => displayData(data));
+    .then((data) => {
+        displayData(data);
+        listTags(getGenre(data));
+        tagGenres(data);
+    });
 
 //cria uma lista não ordenada dado um array
-function makeUL(array, data) {
+function makeUL(array) {
     var list = document.getElementById('nameList');
-    var genres;
-    for (j = 0; j < data.lenght; j++) {
-        alert(JSON.stringify(data[j].genre).split(','));
-    }
-    genres = data[1]["genre"];
-    alert(JSON.stringify(genres));
-    alert(data[1]["genre"]);
     for (var i = 0; i < array.length; i++) {
         var item = document.createElement('li');
-
         var a = document.createElement('a');
-        a.setAttribute('href', '#');
+        a.setAttribute('href', 'javascript:void(0)');
+        a.setAttribute('id', i);
         item.appendChild(a);
         a.appendChild(document.createTextNode(array[i]));
 
@@ -33,16 +30,10 @@ function displayData(data) {
     for (var i = 0; i < data.length; i++) {
         gameNames[i] = data[i].name;
     }
-    document.getElementById('gameList').appendChild(makeUL(gameNames, data));
+    document.getElementById('gameList').appendChild(makeUL(gameNames));
 
 
-    /*
-    data.forEach(element => {
-        console.log(element.name);
-        //adiciona todos os títulos dos jogos numa lista não ordenada.
-        document.getElementById('gameList').appendChild(makeUL(element.name));
-    });
-    */
+
 }
 
 function getDescription(target, data) {
@@ -51,17 +42,21 @@ function getDescription(target, data) {
             var developers = document.createElement('h3');
             var genre = document.createElement('h3');
             var publishers = document.createElement('h3');
+            developers.classList.add("desc");
+            genre.classList.add("desc");
+            publishers.classList.add("desc");
             developers.appendChild(document.createTextNode("Desenvolvedora: " + element.developers));
             genre.appendChild(document.createTextNode("Gênero: " + element.genre));
             publishers.appendChild(document.createTextNode("Distribuidora: " + element.publishers));
-            alert(target.p);
             target.appendChild(developers);
             target.appendChild(genre);
             target.appendChild(publishers);
+
         }
     });
 }
-
+//processa a listagem de items para extrair os generos unicos
+//e retornar uma lista apenas com os generos não duplicados
 function getGenre(data) {
     const gameGender = [];
     //cria um array só com os titulos dos jogos
@@ -84,28 +79,28 @@ function getGenre(data) {
     let unique = [...new Set(lower)];
     return unique;
 }
-
+//Gera botões para representar as tags de gênero
 function listTags(tag) {
 
     for (var i = 0; i < tag.length; i++) {
         var tagButton = document.createElement('button');
-        tagButton.classList.add('btn');
+        tagButton.setAttribute("class", 'btn btn-outline-primary');
         tagButton.setAttribute("onclick", `filterSelection('${tag[i]}')`)
         tagButton.innerHTML = tag[i];
         document.getElementById('myTags').appendChild(tagButton);
     }
 }
-
-fetch(baseURL)
-    .then((res) => res.json())
-    .then((data) => {
-        listTags(getGenre(data));
-    })
-
-function getEventTarget(e) {
-    e = e || window.event;
-    return e.target || e.srcElement;
+//função para adicionar as tags a cada item da lista
+function tagGenres(data) {
+    const result = [];
+    for (var i = 0; i < data.length; i++) {
+        result[i] = data[i].genre;
+    }
+    for (var i = 0; i < result.length; i++) {}
 }
+
+
+
 //Função de busca baseada em filtrar baseado no que é digitado no input
 function search() {
     var input, filter, ul, li, a, i, txtValue;
@@ -123,7 +118,11 @@ function search() {
         }
     }
 }
-
+//clicar no elemento da lista abre a descrição do item da lista
+function getEventTarget(e) {
+    e = e || window.event;
+    return e.target || e.srcElement;
+}
 var ul = document.getElementById('nameList');
 ul.onclick = function (event) {
     var target = getEventTarget(event);

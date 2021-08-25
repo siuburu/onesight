@@ -5,28 +5,48 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>API Switch Games</title>
 </head>
 
 <body>
-    <label>Lista de Jogos</label>
-    <input type="text" name="" id="search" onkeyup="search()" placeholder="Busque por nome..." title="Digite um nome">
-    <div id=container>
+    <header>
+        <div class="container">
+            <img class="logo" src="./img/nintendo-logo.original.jpg" alt="logo">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="w-100 text-right">
+                    <span class="title">Switch Games</span>
+                    <input type="text" name="" id="search" onkeyup="search()" placeholder="Search"
+                        title="Digite um nome">
+
+                    <a href="#"><i class="fas fa-question-circle"></i> Support</a>
+                    <a href="#"><i class="fas fa-heart"></i> Wish List</a>
+                    <a href="#"><i class="fas fa-user"></i> User</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="lista">
         <div id="gameList">
-            <ul id="nameList"></ul>
+            <ul id="nameList" class="list-group"></ul>
         </div>
         <div>
-
-
         </div>
     </div>
     <div id="myTags">
-        <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+        <button class="btn btn-outline-primary" onclick="filterSelection('all')"> Show all</button>
 
     </div>
     </div>
 </body>
+
+<script src="https://kit.fontawesome.com/a8ee097ae7.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+</script>
 <script src="./script.js"></script>
 
 </html>
