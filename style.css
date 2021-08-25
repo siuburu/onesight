@@ -96,7 +96,7 @@ header nav a:hover {
 }
 
 .filterDiv {
-  visibility: hidden;
+  visibility: visible;
   /* Hidden by default */
 }
 

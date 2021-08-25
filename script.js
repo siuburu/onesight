@@ -97,8 +97,7 @@ function tagGenres(data) {
         var s = items[i].innerHTML.split('<')[0];
         data.forEach(element => {
             if (element.name === s) {
-                var genre = Object.values(element.genre);
-                items[i].setAttribute("class", "filterDiv " + genre);
+                items[i].setAttribute("class", "filterDiv " + element.genre);
             }
         });
     }
@@ -134,18 +133,5 @@ ul.onclick = function (event) {
         .then((res) => res.json())
         .then((data) => {
             getDescription(target, data);
-            tagGenres(target, data);
         })
 };
-
-filterSelection("all")
-
-function filterSelection(c) {
-    var x, i;
-    x = document.getElementsByClassName("filterDiv");
-    if (c == "all") c == "";
-    for (i = 0; i < x.length; i++) {
-        x[i].classList.remove("show");
-        if (x[i].className.indexOf(c) > -1) x[i].classList.add("show")
-    }
-}
