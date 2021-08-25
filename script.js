@@ -35,13 +35,13 @@ function displayData(data) {
 
 
 }
-
+//Insere a descrição do item da lista.
 function getDescription(target, data) {
     data.forEach(element => {
         if (element.name === target.innerHTML) {
-            var developers = document.createElement('h3');
-            var genre = document.createElement('h3');
-            var publishers = document.createElement('h3');
+            var developers = document.createElement('p');
+            var genre = document.createElement('p');
+            var publishers = document.createElement('p');
             developers.classList.add("desc");
             genre.classList.add("desc");
             publishers.classList.add("desc");
